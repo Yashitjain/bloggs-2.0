@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/style.ejs') %>   
+<style>
+    body{
+        background-image: url("images/background2.jpg");
+        background-clip: text;
+        font-weight: 600;
+    }
+    div{
+        background-clip: text;
+        font-weight: 600;
+    }
+    .card{
+        margin-inline:auto;
+        margin-top:40px;
+    }
+
+    .card-img-top{
+        margin: 15px;
+    }
+
+    .card > .card-img-top{
+        width: 92%;
+    }
+
+    form > .card{
+        width: 80%;
+    }
+
+    .blogCard{
+        width: 75%;
+    }
+
+    .thumbnail{
+            width: 45%;
+            aspect-ratio: 16/9;
+        }
+
+    @media(max-width:400px){
+        .blogCard{
+            width: 80%;
+        }
+        
+        .thumbnail{
+            width: 90%;
+            aspect-ratio: 16/9;
+        }
+    }
+</style> 
+
+
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <form action="/blog/post" method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-body">
+            <input type="text" class="card-title" name="title" placeholder="Add Title">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="blogPost" style="height: 100px;resize: none;"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+            </div>
+            <input type="file" name="thumbnail" class="card-img-top" alt="...">
+
+            <button type="submit" class="btn btn-primary">Post</a>
+            </div>
+        </div>
+    </form>
+
+    <% if (locals.allBlogs) { %>
+            <% allBlogs.reverse().forEach((blog) => { %>
+                <div class="card blogCard" >
+                    <% if (blog.thumbnail != '') { %>
+                        <img src="images/<%= blog.thumbnail %>" class="thumbnail" >
+                    <% } %> 
+                    <div class="card-body">
+                        <a href="/blog/<%= blog._id %>"><h5 class="card-title"><%= blog.title %></h5></a>
+                        <p class="card-text"><%= blog.message %></p>
+                    </div>
+                    <img src=images/<%= locals.blogCreater.profilePicture%> class="card-img-top" style="height:30px; width: 30px;margin-bottom:0px">
+                    <div class="card-body" style="height: 20px;padding: 0px;margin-left: 10px;margin-bottom: 10px;">
+                        <span class="card-title" style="font-size: 15px;">  <%= blog.userName %> </span>
+                    </div>
+
+                </div>    
+                  
+            <% }) %>
+        
+    <% } %>
+
+    
+
+    <%- include('../partials/script') %>
+</body>
+</html>

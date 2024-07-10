@@ -1,0 +1,47 @@
+<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/blog">Bloggs</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+
+          <% if (locals.user) { %>
+            <% if (!locals.friend) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/friend">Friend</a>
+              </li>
+            <% } %>
+
+            <% if (locals.friendRequests) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/friend" style="color: white;"> <b><%= friendRequests.length %> New Request </b> </a>
+              </li>
+              
+            <% } %>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <%= user.userName %>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/user/logout">Log Out</a>
+                </li>
+              </ul>
+            </li>
+
+          <% }else{%>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">Create Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/bloggs">Sign In</a>
+              </li>
+              <%} %>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>    

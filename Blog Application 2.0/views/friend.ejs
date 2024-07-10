@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/style.ejs') %>  
+    <style>
+      body{
+        background-image: url("images/background2.jpg");
+        background-clip: text;
+        font-weight: 600;
+      }
+        .basic-regular {
+        font-family: "Basic", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        }
+
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/nav') %>
+    <% if (locals.error) { %>
+      <div class="alert alert-danger" role="alert">
+        <h3> <%= error %> </h3>
+      </div>
+    <% } %>
+    <form style="width: 60%;margin: 25px;margin-inline: auto;" action="/user/addFriend" method="post">
+        <div class="mb-3 row align-items-start" >
+          <div class="col"> 
+            <span class="basic-regular" style="margin: 15px;font-size: 1.5rem;">Friend userName</span>
+            <input 
+                type="text" 
+                class="form-control"  
+                style="margin-top: 15px; border: 1px black solid;"
+                name="friendUserName">
+          </div>
+          <div class="col" style="margin-top: 3.2rem;max-width:fit-content;">
+          <button type="submit" class="btn btn-primary" >Submit</button>
+          </div>
+        </div>
+      </form>
+      
+      <% if (locals.pendingFriendRequest) { %>
+        <h5 style="margin: 25px;">Pending Requests  (<%= pendingFriendRequest.length %>)</h5>
+             <% pendingFriendRequest.forEach(Request => { %>
+            <div style="display: inline-flex;">
+              <div class="alert alert-light" role="alert" style="width: 60vw;border: 1px black solid;margin-left: 7rem;">
+                <%= Request %> 
+              </div>
+              <div><a href="/user/acceptFriendRequest/<%= Request %>"><button type="submit" class="btn btn-success" style="margin-inline: 1.5rem">Accept</button></div></a>
+              <div><a href="/user/rejectFriendRequest/<%= Request %>"><button type="submit" class="btn btn-danger" style="margin-inline: 1.5rem;">Reject</button></div></a>
+            </div>
+             <% }) %>
+        
+      <% } %>
+      <% if (locals.friendList) { %>
+        <h5 style="margin: 25px;">Friends (<%= friendList.length %>)</h5>
+             <% friendList.forEach(friend => { %>
+            <div style="display: inline-flex;">
+              <div class="alert alert-light" role="alert" style="width: 60vw;border: 1px black solid;margin-left: 7rem;">
+                <h4><%= friend %></h4> 
+              </div>
+              
+            </div>
+             <% }) %>
+        
+      <% } %>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

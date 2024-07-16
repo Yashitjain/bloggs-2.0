@@ -30,10 +30,15 @@ async function handleBlogPage(req,res){
     const friend = (await user.findOne(entry)).friend;
     const idToName = new Map();
     friend.push(req.user.userName);
+    const allusers = await user.find({})
     for(let i=0;i<friend.length;i++){
         idToName.set(((await user.findOne({userName:friend[i]}))._id).toString(),friend[i]);
         friend[i]=(await user.findOne({userName:friend[i]}))._id;
     }
+    allusers.forEach(element => {
+        idToName.set((element._id).toString(),element.userName);
+    });
+    console.log(idToName);
     const friendsBlogsToDisplay = await blogs.find({createdBy:{$in:friend}});
     const othersBlogsToDisplay = await blogs.find({createdBy:{$nin:friend}})
     const blogsToDisplay=othersBlogsToDisplay.concat(friendsBlogsToDisplay);
@@ -42,15 +47,9 @@ async function handleBlogPage(req,res){
 
     console.log(idToName);
     blogsToDisplay.forEach(async blog => {
-        // allblogs.push(blog);
-        blog["userName"] =  idToName.get(blog.createdBy.toString());
+        blog["userName"] =  idToName.get((blog.createdBy).toString());
         allblogs.push(blog);
-
-        // console.log(blog);
     });
-    console.log(allblogs.forEach(blog => {
-        console.log("===>",blog.userName)
-    }));
 
     return res.render("blogs",{
         allBlogs:allblogs,

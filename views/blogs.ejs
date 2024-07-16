@@ -58,9 +58,9 @@
     <form action="/blog/post" method="post" enctype="multipart/form-data">
         <div class="card">
             <div class="card-body">
-            <input type="text" class="card-title" name="title" placeholder="Add Title">
+            <input type="text" class="card-title" name="title" placeholder="Add Title" minlength="10" required >
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="blogPost" style="height: 100px;resize: none;"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="blogPost" style="height: 100px;resize: none;" minlength="20" required></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
             <input type="file" name="thumbnail" class="card-img-top" alt="...">

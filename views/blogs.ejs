@@ -73,9 +73,9 @@
     <% if (locals.allBlogs) { %>
             <% allBlogs.reverse().forEach((blog) => { %>
                 <div class="card blogCard" >
-                    <% if (blog.thumbnail != '') { %>
+                    <center><% if (blog.thumbnail != '') { %>
                         <img src="images/<%= blog.thumbnail %>" class="thumbnail" >
-                    <% } %> 
+                    <% } %> </center>
                     <div class="card-body">
                         <a href="/blog/<%= blog._id %>"><h5 class="card-title"><%= blog.title %></h5></a>
                         <p class="card-text"><%= blog.message %></p>

@@ -15,6 +15,7 @@ async function handleCreateNewUser(req,res){
     if(!await user.findOne({userName:req.body.userName}) && !await user.findOne({userEmail:req.body.userEmail})){
         const OTP = Math.floor(Math.random(0,1)*10000);
         genereateOTP = OTP;
+        console.log(OTP);
         sendMail(req.body.userEmail,OTP,req.body.userEmail);
         return res.render("verifyOTP");
     }else{

@@ -61,7 +61,7 @@ function sendMail(userEmail,OTP,userEmail){
     service: 'gmail',
     auth: {
         user: 'yashitvictus2022@gmail.com',
-        pass: 'gsgq gkrv jprj rtxn'
+        pass: 'znmk vfbw agvw tgwl'
     }
     });
 

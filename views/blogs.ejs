@@ -77,8 +77,8 @@
                         <img src="images/<%= blog.thumbnail %>" class="thumbnail" >
                     <% } %> </center>
                     <div class="card-body">
-                        <a href="/blog/<%= blog._id %>"><h5 class="card-title"><%= blog.title %></h5></a>
-                        <p class="card-text"><%= blog.message %></p>
+                        <a href="/blog/<%= blog._id %>"><h5 class="card-title"><%= (blog.title).slice(0,20) %></h5></a>
+                        <p class="card-text"><%= (blog.message).slice(0,100) %></p>
                     </div>
                     <img src=images/<%= locals.blogCreater.profilePicture%> class="card-img-top" style="height:30px; width: 30px;margin-bottom:0px">
                     <div class="card-body" style="height: 20px;padding: 0px;margin-left: 10px;margin-bottom: 10px;">

@@ -52,7 +52,7 @@
         <div class="card blogCard" >
             <% if (locals.blog) { %>
                 <% if (blog.thumbnail != '') { %>
-                    <img src=images/<%= blog.thumbnail %> class="thumbnail" >
+                    <img src="data:image/<%=blog.thumbnail.contentType%>;base64,<%=blog.thumbnail.data.toString('base64')%>" class="thumbnail" >
                 <% } %> 
                 <div class="card-body">
                      <h5 class="card-title"><%= blog.title %></h5>

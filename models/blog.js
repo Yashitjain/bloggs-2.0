@@ -17,9 +17,8 @@ const schema = {
         require:true
     },
     thumbnail:{
-        type:String,
-        require:true,
-        
+        data:Buffer,
+        contentType:String
     }
 }
 

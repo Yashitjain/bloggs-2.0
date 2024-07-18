@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
       const user = getUser(req.cookies.token);
       console.log("originalname",file.originalname);
       fileName=file.fieldname + '_' + user.userName + '_' + Date.now()+'_'+file.originalname.replace(/ /gi,"_");
-      console.log("storage",fileName);
+      // console.log("storage",fileName);
       cb(null, fileName);
     }
   })

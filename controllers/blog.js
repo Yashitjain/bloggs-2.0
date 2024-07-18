@@ -3,6 +3,7 @@ const comments = require("../models/comment");
 const {user} = require("../models/user");
 const {getUser} = require("../service/authentication");
 const mongoose = require("mongoose");
+const fs = require("fs")
 
 
 async function handleCreateNewPost(req,res,fileName){
@@ -13,7 +14,10 @@ async function handleCreateNewPost(req,res,fileName){
             "message":req.body.blogPost,
             "createdBy":entry._id,
             "title":req.body.title,
-            'thumbnail':fileName
+            "thumbnail":{
+                'data':fs.readFileSync(req.file.path),
+                "contentType":req.file.mimetype
+            }
         }
         
         blogs.create(post);

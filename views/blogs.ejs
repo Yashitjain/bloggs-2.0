@@ -73,8 +73,8 @@
     <% if (locals.allBlogs) { %>
             <% allBlogs.reverse().forEach((blog) => { %>
                 <div class="card blogCard" >
-                    <center><% if (blog.thumbnail != '') { %>
-                        <img src="images/<%= blog.thumbnail %>" class="thumbnail" >
+                    <center><% if (blog.thumbnail.data) { %>
+                        <img src="data:image/<%=blog.thumbnail.contentType%>;base64,<%=blog.thumbnail.data.toString('base64')%>" class="thumbnail" >
                     <% } %> </center>
                     <div class="card-body">
                         <a href="/blog/<%= blog._id %>"><h5 class="card-title"><%= (blog.title).slice(0,20) %></h5></a>

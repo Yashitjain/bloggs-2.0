@@ -37,6 +37,46 @@
             width: 45%;
             aspect-ratio: 16/9;
         }
+    
+    /* image modal */
+    .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        height: 70vh;
+        max-width: 70%;
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: black;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
     @media(max-width:400px){
         .blogCard{
@@ -74,7 +114,12 @@
             <% allBlogs.reverse().forEach((blog) => { %>
                 <div class="card blogCard" >
                     <center><% if (blog.thumbnail.data) { %>
-                        <img src="data:image/<%=blog.thumbnail.contentType%>;base64,<%=blog.thumbnail.data.toString('base64')%>" class="thumbnail" >
+                        <img src="data:image/<%=blog.thumbnail.contentType%>;base64,<%=blog.thumbnail.data.toString('base64')%>" class="thumbnail post-img-preview myImg " >
+                        <div  class="modal myModal">
+                            <span class="close">&times;</span>
+                            <img class="modal-content img01" >
+                            <div id="caption"></div>
+                        </div>   
                     <% } %> </center>
                     <div class="card-body">
                         <a href="/blog/<%= blog._id %>"><h5 class="card-title"><%= (blog.title).slice(0,20) %></h5></a>
@@ -95,4 +140,28 @@
 
     <%- include('../partials/script') %>
 </body>
+
+<script>
+    var modal = document.getElementsByClassName('myModal');
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementsByClassName('myImg');
+    var modalImg = document.getElementsByClassName("img01");
+    for(let i=0;i<modal.length;i++){
+        img[i].onclick = function(){
+            modal[i].style.display = "block"
+            modalImg[i].src = this.src
+        }
+    }
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close");
+
+    // When the user clicks on <span> (x), close the modal
+    for(let i=0;i<span.length;i++){
+        span[i].onclick = function(){
+            modal[i].style.display = "none";
+        }
+    }
+
+</script>
 </html>

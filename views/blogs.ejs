@@ -83,7 +83,7 @@
             width: 80%;
         }
         
-        .img{
+        .thumbnail{
             width: 90%;
             aspect-ratio: 16/9;
         }
@@ -156,7 +156,7 @@
     for(let i=0;i<modal.length;i++){
         console.log(img[i].width/img[i].height)
         var aspectratio = img[i].width/img[i].height;
-            if(aspectratio>1 && deviceWidth > 400){
+            if(aspectratio>1 && deviceWidth > 600){
                 console.log("if");
                 img[i].style.width = "50vw";
                 img[i].style.height = `${(2/3)*50}vh`;
@@ -171,10 +171,10 @@
                
             }
             
-            else if(aspectratio<1  && deviceWidth > 400){
+            else if(aspectratio<1  && deviceWidth > 600){
                 console.log("else")
-                img[i].style.width = "25vw";
-                img[i].style.height = `60vh`;
+                img[i].style.width = "30vw";
+                img[i].style.height = `${(16/9)*30}vh`;
                 img[i].onclick = function(){
                     img[i].style.display = "none";
                     modelContent[i].style.height = "90vh";
@@ -187,12 +187,14 @@
 
             else{
                 img[i].onclick = function(){
-                    modelContent[i].style.width = "70vw";
-                    modelContent[i].style.height = `50vh`;
+                    // modelContent[i].style.width = "70vw";
+                    // modelContent[i].style.height = `50vh`;
                     modal[i].style.display = "block"
                     modalImg[i].src = this.src
                 }
             }
+
+            
     }
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close");

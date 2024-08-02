@@ -47,5 +47,5 @@ const blogRoute = require("./routes/blog");
 app.use("/blog",blogRoute);
 
 
-PORT = process.env.PORT || 8002
+PORT = process.env.PORT || 8000
 app.listen(PORT,console.log("server started",PORT));
